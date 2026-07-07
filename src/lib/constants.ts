@@ -8,16 +8,25 @@ export const COMPANY = {
   address: 'Downriver Michigan',
   url: 'https://konkusconstruction.com',
   serviceArea: 'Downriver Michigan',
-  facebook: 'https://facebook.com/', // update with real URL
-  instagram: 'https://instagram.com/', // update with real URL
+  facebook: 'https://facebook.com/',    // update with real URL
+  instagram: 'https://instagram.com/',  // update with real URL
 };
 
 export const NAV_LINKS = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
+  { label: 'Home',     href: '/' },
+  { label: 'About',    href: '/about' },
   { label: 'Services', href: '/services' },
-  { label: 'Gallery', href: '/gallery' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Gallery',  href: '/gallery' },
+  { label: 'Contact',  href: '/contact' },
+];
+
+/** Hero background images — rotate every 5 s */
+export const HERO_IMAGES = [
+  'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&q=85',  // dark luxury kitchen
+  'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1920&q=85',  // luxury bathroom
+  'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=85', // finished basement
+  'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=85', // modern living / flooring
+  'https://images.unsplash.com/photo-1556228720-da4c0bd8e94a?w=1920&q=85',  // trim & millwork
 ];
 
 export const SERVICES = [
@@ -25,81 +34,101 @@ export const SERVICES = [
     id: 'kitchen',
     title: 'Kitchen Remodeling',
     description:
-      'From custom cabinetry and countertops to full layout transformations — we turn outdated kitchens into the heart of your home.',
+      'Full kitchen transformations — custom cabinetry, countertops, layout redesigns, and premium finishes that turn your kitchen into the heart of your home.',
     image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=85',
+    panelImage: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=80',
     category: 'Interior',
+    icon: 'kitchen',
   },
   {
     id: 'bathroom',
     title: 'Bathroom Remodeling',
     description:
-      'Custom tile work, vanity upgrades, walk-in showers, and full renovations. Your bathroom should feel like a retreat.',
+      'Spa-inspired bathroom renovations with custom tile work, modern fixtures, walk-in showers, and luxurious finishes tailored to your style and budget.',
     image: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=900&q=85',
+    panelImage: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=400&q=80',
     category: 'Interior',
+    icon: 'bathroom',
   },
   {
     id: 'basement',
-    title: 'Basement Finishing',
+    title: 'Finished Basements',
     description:
-      'We frame, insulate, drywall, and finish your basement into livable space — a family room, home office, or guest suite.',
+      'Transform your unfinished basement into a functional living space — home theater, gym, office, or additional bedroom suite, framed and finished to code.',
     image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&q=85',
+    panelImage: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=80',
     category: 'Interior',
-  },
-  {
-    id: 'decks',
-    title: 'Decks & Outdoor Living',
-    description:
-      'Custom decks, pergolas, and outdoor entertaining spaces built for Michigan weather and your lifestyle.',
-    image: 'https://images.unsplash.com/photo-1591825729269-caeb344f6df2?w=900&q=85',
-    category: 'Exterior',
-  },
-  {
-    id: 'roofing',
-    title: 'Roofing',
-    description:
-      'Roof replacements and repairs done right. We use quality materials and stand behind every job we complete.',
-    image: 'https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?w=900&q=85',
-    category: 'Exterior',
-  },
-  {
-    id: 'siding',
-    title: 'Siding',
-    description:
-      'Enhance your home\'s curb appeal and protection with expert siding installation and replacement.',
-    image: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&q=85',
-    category: 'Exterior',
-  },
-  {
-    id: 'windows-doors',
-    title: 'Windows & Doors',
-    description:
-      'Improve energy efficiency and curb appeal. We install and replace windows and entry doors with proper sealing and finishing.',
-    image: 'https://images.unsplash.com/photo-1558618047-f4229bb8ffd5?w=900&q=85',
-    category: 'Exterior',
+    icon: 'basement',
   },
   {
     id: 'flooring',
     title: 'Flooring',
     description:
-      'Hardwood, luxury vinyl plank, laminate, and tile — installed with precision, proper subfloor prep, and beautiful results.',
+      'Hardwood, luxury vinyl plank, tile, and carpet installation with expert subfloor prep for a flawless, long-lasting result in any room of the house.',
     image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=85',
+    panelImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
     category: 'Interior',
+    icon: 'flooring',
   },
   {
-    id: 'drywall-painting',
-    title: 'Drywall & Painting',
+    id: 'painting',
+    title: 'Interior Painting',
     description:
-      'Seamless drywall installation and repair, crisp interior painting with clean lines, zero mess, and lasting results.',
-    image: 'https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=900&q=85',
+      'Clean, precise interior painting with premium materials, thorough prep work, and crisp finish lines that make any room feel like new.',
+    image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=900&q=85',
+    panelImage: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=400&q=80',
     category: 'Interior',
+    icon: 'painting',
+  },
+  {
+    id: 'trim',
+    title: 'Trim & Finish Carpentry',
+    description:
+      'Crown molding, baseboards, door and window casings, built-ins, and wainscoting — precision carpentry that elevates every room it touches.',
+    image: 'https://images.unsplash.com/photo-1556228720-da4c0bd8e94a?w=900&q=85',
+    panelImage: 'https://images.unsplash.com/photo-1556228720-da4c0bd8e94a?w=400&q=80',
+    category: 'Interior',
+    icon: 'trim',
+  },
+  {
+    id: 'drywall',
+    title: 'Drywall Repair',
+    description:
+      'Seamless drywall installation, patching, and finishing for any size project — from punch-list repairs to full room build-outs, smooth and paint-ready every time.',
+    image: 'https://images.unsplash.com/photo-1615529328331-f8917597711f?w=900&q=85',
+    panelImage: 'https://images.unsplash.com/photo-1615529328331-f8917597711f?w=400&q=80',
+    category: 'Interior',
+    icon: 'drywall',
   },
   {
     id: 'maintenance',
     title: 'Seasonal Maintenance',
     description:
-      'Gutter cleaning, pressure washing, caulking, and exterior upkeep — keep your home in peak condition year-round.',
+      'Year-round home maintenance that keeps your property in peak condition — gutter cleaning, caulking, pressure washing, and exterior upkeep through every season.',
     image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=900&q=85',
+    panelImage: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&q=80',
     category: 'Exterior',
+    icon: 'maintenance',
+  },
+  {
+    id: 'repairs',
+    title: 'General Home Repairs',
+    description:
+      'From small fixes to larger repair projects — if something\'s broken, worn, or needs attention, we\'ll get it back in order quickly and correctly.',
+    image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=900&q=85',
+    panelImage: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&q=80',
+    category: 'General',
+    icon: 'repairs',
+  },
+  {
+    id: 'custom',
+    title: 'Custom Projects',
+    description:
+      'Have something unique in mind? We take on custom builds and special projects that don\'t fit a standard category. Just describe what you\'re envisioning — we\'ll make it happen.',
+    image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=900&q=85',
+    panelImage: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=400&q=80',
+    category: 'Custom',
+    icon: 'custom',
   },
 ];
 
@@ -194,43 +223,43 @@ export const SERVICE_AREAS = [
 ];
 
 export const GALLERY_FILTERS = [
-  'All', 'Kitchen', 'Bathroom', 'Basement', 'Exterior', 'Flooring', 'Painting',
+  'All', 'Kitchen', 'Bathroom', 'Basement', 'Flooring', 'Painting', 'Trim',
 ];
 
 export const GALLERY_IMAGES = [
-  { id: 1, category: 'Kitchen', src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80', alt: 'Modern kitchen remodel', height: 'tall' },
-  { id: 2, category: 'Bathroom', src: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80', alt: 'Luxury bathroom renovation', height: 'short' },
-  { id: 3, category: 'Flooring', src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80', alt: 'Hardwood flooring installation', height: 'medium' },
-  { id: 4, category: 'Painting', src: 'https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=800&q=80', alt: 'Interior painting project', height: 'tall' },
-  { id: 5, category: 'Kitchen', src: 'https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=800&q=80', alt: 'Kitchen cabinet installation', height: 'medium' },
-  { id: 6, category: 'Exterior', src: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80', alt: 'Exterior home project', height: 'short' },
-  { id: 7, category: 'Basement', src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80', alt: 'Finished basement', height: 'medium' },
-  { id: 8, category: 'Bathroom', src: 'https://images.unsplash.com/photo-1613545325278-f24b0cae1224?w=800&q=80', alt: 'Master bathroom remodel', height: 'tall' },
-  { id: 9, category: 'Exterior', src: 'https://images.unsplash.com/photo-1591825729269-caeb344f6df2?w=800&q=80', alt: 'Deck and outdoor living space', height: 'short' },
-  { id: 10, category: 'Flooring', src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80', alt: 'Tile flooring installation', height: 'medium' },
-  { id: 11, category: 'Kitchen', src: 'https://images.unsplash.com/photo-1556909048-f473395fd891?w=800&q=80', alt: 'White kitchen renovation', height: 'short' },
-  { id: 12, category: 'Exterior', src: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=80', alt: 'Exterior home', height: 'tall' },
-  { id: 13, category: 'Painting', src: 'https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=800&q=80', alt: 'Trim and finish work', height: 'medium' },
-  { id: 14, category: 'Basement', src: 'https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?w=800&q=80', alt: 'Basement entertainment area', height: 'short' },
-  { id: 15, category: 'Bathroom', src: 'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=800&q=80', alt: 'Walk-in shower installation', height: 'medium' },
-  { id: 16, category: 'Kitchen', src: 'https://images.unsplash.com/photo-1556911220-bda9ca8d7fe9?w=800&q=80', alt: 'Dark kitchen remodel', height: 'tall' },
-  { id: 17, category: 'Flooring', src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80', alt: 'Luxury vinyl plank flooring', height: 'short' },
-  { id: 18, category: 'Exterior', src: 'https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=800&q=80', alt: 'Window installation', height: 'medium' },
-  { id: 19, category: 'Bathroom', src: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800&q=80', alt: 'Bathroom tile work', height: 'tall' },
-  { id: 20, category: 'Kitchen', src: 'https://images.unsplash.com/photo-1556909048-f473395fd891?w=800&q=80', alt: 'Kitchen countertop installation', height: 'medium' },
+  { id: 1,  category: 'Kitchen',   src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80',  alt: 'Dark luxury kitchen remodel',        height: 'tall'   },
+  { id: 2,  category: 'Bathroom',  src: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80',  alt: 'Luxury bathroom renovation',         height: 'short'  },
+  { id: 3,  category: 'Flooring',  src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',  alt: 'Hardwood flooring installation',     height: 'medium' },
+  { id: 4,  category: 'Painting',  src: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&q=80', alt: 'Interior painting project',         height: 'tall'   },
+  { id: 5,  category: 'Kitchen',   src: 'https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=800&q=80',  alt: 'Kitchen cabinet installation',       height: 'medium' },
+  { id: 6,  category: 'Trim',      src: 'https://images.unsplash.com/photo-1556228720-da4c0bd8e94a?w=800&q=80',  alt: 'Trim and finish carpentry',          height: 'short'  },
+  { id: 7,  category: 'Basement',  src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80', alt: 'Finished basement',                height: 'medium' },
+  { id: 8,  category: 'Bathroom',  src: 'https://images.unsplash.com/photo-1613545325278-f24b0cae1224?w=800&q=80', alt: 'Master bathroom remodel',           height: 'tall'   },
+  { id: 9,  category: 'Painting',  src: 'https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=800&q=80',  alt: 'Drywall and painting work',          height: 'short'  },
+  { id: 10, category: 'Flooring',  src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80', alt: 'Modern living room flooring',      height: 'medium' },
+  { id: 11, category: 'Kitchen',   src: 'https://images.unsplash.com/photo-1556909048-f473395fd891?w=800&q=80',  alt: 'White kitchen renovation',           height: 'short'  },
+  { id: 12, category: 'Trim',      src: 'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=800&q=80', alt: 'Custom built-in carpentry',        height: 'tall'   },
+  { id: 13, category: 'Bathroom',  src: 'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=800&q=80', alt: 'Walk-in shower installation',      height: 'medium' },
+  { id: 14, category: 'Basement',  src: 'https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?w=800&q=80', alt: 'Basement entertainment area',      height: 'short'  },
+  { id: 15, category: 'Flooring',  src: 'https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=800&q=80', alt: 'Luxury vinyl plank flooring',      height: 'medium' },
+  { id: 16, category: 'Kitchen',   src: 'https://images.unsplash.com/photo-1556911220-bda9ca8d7fe9?w=800&q=80',  alt: 'Modern dark kitchen',               height: 'tall'   },
+  { id: 17, category: 'Painting',  src: 'https://images.unsplash.com/photo-1615529328331-f8917597711f?w=800&q=80', alt: 'Interior drywall finishing',       height: 'short'  },
+  { id: 18, category: 'Bathroom',  src: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800&q=80', alt: 'Bathroom tile work',              height: 'tall'   },
+  { id: 19, category: 'Kitchen',   src: 'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=800&q=80',  alt: 'Kitchen countertop installation',    height: 'medium' },
+  { id: 20, category: 'Trim',      src: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&q=80',  alt: 'Crown molding installation',         height: 'short'  },
 ];
 
 export const PROJECT_TYPES = [
   'Kitchen Remodeling',
   'Bathroom Remodeling',
-  'Basement Finishing',
-  'Decks & Outdoor Living',
-  'Roofing',
-  'Siding',
-  'Windows & Doors',
+  'Finished Basements',
   'Flooring',
-  'Drywall & Painting',
+  'Interior Painting',
+  'Trim & Finish Carpentry',
+  'Drywall Repair',
   'Seasonal Maintenance',
+  'General Home Repairs',
+  'Custom Projects',
   'Other',
 ];
 

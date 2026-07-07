@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import '../styles/globals.css';
-import { Header } from '@/components/layout/Header';
+import { ConditionalHeader } from '@/components/layout/ConditionalHeader';
 import { Footer } from '@/components/layout/Footer';
 import { FloatingButtons } from '@/components/layout/FloatingButtons';
 import { COMPANY } from '@/lib/constants';
@@ -141,7 +141,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="min-h-screen bg-white antialiased">
-        <Header />
+        <ConditionalHeader />
         <main>{children}</main>
         <Footer />
         <FloatingButtons />

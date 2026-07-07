@@ -2,111 +2,122 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { MdArrowForward } from 'react-icons/md';
+import { MdArrowForward, MdKitchen, MdBathtub, MdFoundation, MdGridOn,
+  MdFormatPaint, MdCarpenter, MdWallpaper, MdBuild, MdHandyman, MdAutoAwesome } from 'react-icons/md';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { SERVICES } from '@/lib/constants';
 
+const ICON_MAP: Record<string, React.ReactNode> = {
+  kitchen:     <MdKitchen size={22} />,
+  bathroom:    <MdBathtub size={22} />,
+  basement:    <MdFoundation size={22} />,
+  flooring:    <MdGridOn size={22} />,
+  painting:    <MdFormatPaint size={22} />,
+  trim:        <MdCarpenter size={22} />,
+  drywall:     <MdWallpaper size={22} />,
+  maintenance: <MdBuild size={22} />,
+  repairs:     <MdHandyman size={22} />,
+  custom:      <MdAutoAwesome size={22} />,
+};
+
 export function ServicesSection() {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.04 });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.06 });
 
   return (
-    <section id="services" className="py-28 lg:py-36 bg-charcoal relative overflow-hidden" ref={ref}>
-
-      {/* Subtle background texture */}
-      <div className="absolute inset-0 opacity-[0.03]"
-        style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C4924A' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")` }}
-      />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 bg-[#0d0d0d]" ref={ref}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center max-w-2xl mx-auto mb-18"
+          transition={{ duration: 0.6 }}
         >
-          <p className="eyebrow-light">What We Build</p>
+          <p className="eyebrow-light mb-3">What We Do</p>
           <h2 className="section-heading-light mb-4">
-            Services Built for{' '}
-            <span className="text-gold">Every Home</span>
+            Services Built Around <span className="text-gold">Your Home</span>
           </h2>
-          <div className="gold-rule mx-auto mt-4 mb-6" />
-          <p className="section-body-light">
-            From full renovations to targeted repairs, we bring the same premium
-            craftsmanship and honest approach to every single job.
+          <div className="gold-rule mx-auto mb-5" />
+          <p className="section-body-light max-w-xl mx-auto">
+            From a single repair to a full renovation — every job gets the same careful attention
+            and honest approach.
           </p>
         </motion.div>
 
-        {/* Grid — 2 columns on md, 3 on lg */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
           {SERVICES.map((service, i) => (
-            <motion.article
+            <motion.div
               key={service.id}
-              id={service.id}
-              initial={{ opacity: 0, y: 28 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, delay: i * 0.055 }}
-              className="group relative rounded-2xl overflow-hidden bg-charcoal-700 border border-white/8
-                         hover:border-gold/30 hover:-translate-y-1
-                         transition-all duration-350 shadow-dark"
+              transition={{ duration: 0.5, delay: i * 0.06 }}
             >
-              {/* Image */}
-              <div className="relative h-56 overflow-hidden">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="object-cover transition-transform duration-600 group-hover:scale-[1.06]"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-transparent" />
-                {/* Category chip */}
-                <span className="absolute top-4 left-4 bg-charcoal/70 backdrop-blur-sm text-gold
-                                  text-[11px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full
-                                  border border-gold/25">
-                  {service.category}
-                </span>
-              </div>
+              <Link
+                href={`/services#${service.id}`}
+                className="group flex flex-col overflow-hidden rounded-xl border border-white/[0.08]
+                           bg-white/[0.03] hover:bg-white/[0.07] hover:border-gold/30
+                           transition-all duration-300 h-full"
+              >
+                {/* Image */}
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.08]"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
+                    loading={i < 5 ? 'eager' : 'lazy'}
+                  />
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
+                  <span className="absolute top-3 left-3 text-[9px] font-bold uppercase tracking-widest
+                                   text-gold/90 bg-black/60 backdrop-blur-sm border border-gold/20
+                                   px-2.5 py-1 rounded-full">
+                    {service.category}
+                  </span>
+                </div>
 
-              {/* Content */}
-              <div className="p-6">
-                <h3 className="text-white font-bold text-[17px] mb-2.5 group-hover:text-gold transition-colors duration-200">
-                  {service.title}
-                </h3>
-                <p className="text-white/50 text-[14px] leading-relaxed mb-5">
-                  {service.description}
-                </p>
-                <Link
-                  href={`/contact?service=${encodeURIComponent(service.title)}`}
-                  className="inline-flex items-center gap-1.5 text-gold font-semibold text-[13px]
-                             hover:gap-3 transition-all duration-200"
-                >
-                  Get a Quote
-                  <MdArrowForward size={15} />
-                </Link>
-              </div>
-
-              {/* Bottom hover accent */}
-              <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-gold to-gold-light
-                              opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </motion.article>
+                {/* Card body */}
+                <div className="flex flex-col flex-1 p-4">
+                  <div className="flex items-center gap-2.5 mb-2">
+                    <span className="text-gold/70 group-hover:text-gold transition-colors duration-200 flex-shrink-0">
+                      {ICON_MAP[service.icon]}
+                    </span>
+                    <h3 className="text-white font-bold text-[14px] leading-tight group-hover:text-gold
+                                   transition-colors duration-200">
+                      {service.title}
+                    </h3>
+                  </div>
+                  <p className="text-white/40 text-[12px] leading-relaxed flex-1 mb-3">
+                    {service.description.slice(0, 100)}…
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-gold/60 group-hover:text-gold
+                                   text-[10px] font-bold uppercase tracking-wider transition-all duration-200
+                                   group-hover:gap-2">
+                    Learn More <MdArrowForward size={11} />
+                  </span>
+                </div>
+              </Link>
+            </motion.div>
           ))}
         </div>
 
-        {/* CTA row */}
+        {/* View all */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-center mt-16"
+          className="text-center mt-12"
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5, delay: 0.7 }}
         >
-          <Link href="/services" className="btn-primary px-10">
-            View All Services <MdArrowForward size={17} />
+          <Link
+            href="/services"
+            className="btn-ghost-white px-10 border-white/20 hover:border-gold/50"
+          >
+            View All Services <MdArrowForward size={16} />
           </Link>
         </motion.div>
-
       </div>
     </section>
   );

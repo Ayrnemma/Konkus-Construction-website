@@ -7,7 +7,7 @@ import { SERVICES, COMPANY } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'Our Services',
   description:
-    'Konkus Construction offers kitchen remodeling, bathroom renovation, basement finishing, decks, roofing, siding, windows, flooring, drywall, painting, and seasonal maintenance throughout Downriver Michigan.',
+    'Konkus Construction offers kitchen remodeling, bathroom remodeling, finished basements, flooring, interior painting, trim & finish carpentry, drywall repair, seasonal maintenance, and general home repairs throughout Downriver Michigan.',
 };
 
 export default function ServicesPage() {

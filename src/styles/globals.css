@@ -137,6 +137,12 @@
 @layer utilities {
   .text-balance { text-wrap: balance; }
 
+  /* Vertical text — reads bottom-to-top (used in sidebar nav) */
+  .writing-vertical {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
