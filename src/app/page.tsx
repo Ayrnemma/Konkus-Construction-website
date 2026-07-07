@@ -1,4 +1,4 @@
-import { HeroSidebar }    from '@/components/home/HeroSidebar';
+import { Hero }           from '@/components/home/Hero';
 import { ServicesSection } from '@/components/home/ServicesSection';
 import { GalleryPreview }  from '@/components/home/GalleryPreview';
 import { WhyChooseUs }     from '@/components/home/WhyChooseUs';
@@ -9,7 +9,7 @@ import { ContactCTA }      from '@/components/home/ContactCTA';
 export default function HomePage() {
   return (
     <>
-      <HeroSidebar />
+      <Hero />
       <ServicesSection />
       <GalleryPreview />
       <WhyChooseUs />

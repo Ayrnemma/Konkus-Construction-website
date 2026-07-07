@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { MdPhone, MdMenu, MdClose } from 'react-icons/md';
+import { MdPhone, MdMenu, MdClose, MdArrowForward } from 'react-icons/md';
 import { NAV_LINKS, COMPANY } from '@/lib/constants';
 import clsx from 'clsx';
 
@@ -12,9 +12,10 @@ export function Header() {
   const [scrolled, setScrolled]     = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const isHome   = pathname === '/';
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -26,23 +27,28 @@ export function Header() {
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
 
+  /* On the homepage the header starts transparent and solidifies on scroll.
+     On all other pages it is always the solid charcoal bar. */
+  const solid = !isHome || scrolled;
+
   return (
     <>
-      {/* ── Main header — always dark ─────────────── */}
+      {/* ── Main header ─────────────────────────────── */}
       <header
         className={clsx(
-          'fixed top-0 left-0 right-0 z-50 bg-charcoal transition-all duration-300',
-          scrolled
-            ? 'shadow-[0_1px_0_rgba(255,255,255,0.06)] py-3'
-            : 'py-4'
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-400',
+          solid
+            ? 'bg-[#0a0a0a]/95 backdrop-blur-md border-b border-white/[0.06] py-3'
+            : 'bg-transparent py-5'
         )}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
           <div className="flex items-center justify-between gap-6">
 
-            {/* Logo */}
+            {/* ── Logo ── no box, no background, no filters */}
             <Link href="/" className="group shrink-0" aria-label="Konkus Construction — Home">
-              <div className="relative h-[52px] w-[176px] transition-opacity duration-200 group-hover:opacity-90">
+              <div className="relative transition-opacity duration-200 group-hover:opacity-85"
+                   style={{ height: 58, width: 196 }}>
                 <Image
                   src="/logo.png"
                   alt="Konkus Construction"
@@ -53,45 +59,52 @@ export function Header() {
               </div>
             </Link>
 
-            {/* Desktop nav */}
-            <nav className="hidden lg:flex items-center gap-0.5" aria-label="Main navigation">
-              {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={clsx(
-                    'relative px-4 py-2 text-[14px] font-semibold rounded-lg transition-colors duration-150',
-                    pathname === link.href
-                      ? 'text-gold'
-                      : 'text-white/75 hover:text-white'
-                  )}
-                >
-                  {link.label}
-                  {pathname === link.href && (
-                    <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-gold rounded-full" />
-                  )}
-                </Link>
-              ))}
+            {/* ── Desktop nav ── */}
+            <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
+              {NAV_LINKS.map((link) => {
+                const active = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={clsx(
+                      'relative px-4 py-2 text-[14px] font-semibold rounded-lg transition-colors duration-150',
+                      active
+                        ? 'text-gold'
+                        : solid
+                          ? 'text-white/70 hover:text-white'
+                          : 'text-white/80 hover:text-white'
+                    )}
+                  >
+                    {link.label}
+                    {active && (
+                      <span className="absolute bottom-0.5 left-4 right-4 h-[2px] bg-gold rounded-full" />
+                    )}
+                  </Link>
+                );
+              })}
             </nav>
 
-            {/* Desktop right */}
+            {/* ── Desktop right ── */}
             <div className="hidden lg:flex items-center gap-4 shrink-0">
               <a
                 href={COMPANY.phoneHref}
-                className="flex items-center gap-2 text-white/70 hover:text-white text-[14px] font-semibold transition-colors"
+                className="flex items-center gap-2 text-white/65 hover:text-white text-[14px] font-semibold transition-colors"
               >
-                <MdPhone className="text-gold" size={17} />
+                <MdPhone className="text-gold" size={16} />
                 {COMPANY.phone}
               </a>
               <Link
                 href="/contact"
-                className="btn-primary text-[13px] px-5 py-2.5 rounded-lg"
+                className="inline-flex items-center gap-2 bg-gold hover:bg-[#B8950F] active:scale-[0.97]
+                           text-black text-[13px] font-black uppercase tracking-wide
+                           px-5 py-2.5 rounded-lg transition-all duration-200"
               >
-                Free Estimate
+                Free Estimate <MdArrowForward size={14} />
               </Link>
             </div>
 
-            {/* Mobile burger */}
+            {/* ── Mobile burger ── */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="lg:hidden p-2 -mr-1 text-white/80 hover:text-white transition-colors"
@@ -104,42 +117,42 @@ export function Header() {
         </div>
       </header>
 
-      {/* ── Mobile drawer ─────────────────────────── */}
+      {/* ── Mobile drawer ───────────────────────────── */}
       <div
         className={clsx(
           'fixed inset-0 z-40 lg:hidden transition-all duration-300',
           mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         )}
       >
-        {/* Backdrop */}
         <div
-          className="absolute inset-0 bg-charcoal/70 backdrop-blur-sm"
+          className="absolute inset-0 bg-black/70 backdrop-blur-sm"
           onClick={() => setMobileOpen(false)}
         />
-
-        {/* Panel */}
         <div
           className={clsx(
-            'absolute top-0 right-0 h-full w-[300px] max-w-[88vw] bg-charcoal border-l border-white/10',
+            'absolute top-0 right-0 h-full w-[300px] max-w-[88vw] bg-[#0a0a0a] border-l border-white/[0.08]',
             'transition-transform duration-300 flex flex-col',
             mobileOpen ? 'translate-x-0' : 'translate-x-full'
           )}
         >
-          {/* Top */}
-          <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
-            <div className="relative h-12 w-40">
-              <Image src="/logo.png" alt="Konkus Construction" fill className="object-contain object-left" />
+          <div className="flex items-center justify-between px-6 py-5 border-b border-white/[0.08]">
+            <div className="relative" style={{ height: 46, width: 156 }}>
+              <Image
+                src="/logo.png"
+                alt="Konkus Construction"
+                fill
+                className="object-contain object-left"
+              />
             </div>
             <button
               onClick={() => setMobileOpen(false)}
-              className="p-1.5 text-white/60 hover:text-white transition-colors"
+              className="p-1.5 text-white/50 hover:text-white transition-colors"
               aria-label="Close navigation"
             >
               <MdClose size={22} />
             </button>
           </div>
 
-          {/* Links */}
           <nav className="flex-1 overflow-y-auto px-4 py-6 space-y-1">
             {NAV_LINKS.map((link) => (
               <Link
@@ -149,7 +162,7 @@ export function Header() {
                   'flex items-center px-4 py-3 rounded-xl text-[15px] font-semibold transition-colors',
                   pathname === link.href
                     ? 'text-gold bg-gold/10'
-                    : 'text-white/75 hover:text-white hover:bg-white/5'
+                    : 'text-white/65 hover:text-white hover:bg-white/5'
                 )}
               >
                 {link.label}
@@ -157,20 +170,23 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Mobile CTAs */}
-          <div className="px-5 py-6 border-t border-white/10 space-y-3">
+          <div className="px-5 py-6 border-t border-white/[0.08] space-y-3">
             <a
               href={COMPANY.phoneHref}
-              className="flex items-center justify-center gap-2 w-full bg-white/10 hover:bg-white/15 text-white font-semibold py-3.5 rounded-xl border border-white/15 transition-colors text-[15px]"
+              className="flex items-center justify-center gap-2 w-full bg-white/8 hover:bg-white/12
+                         text-white font-semibold py-3.5 rounded-xl border border-white/12
+                         transition-colors text-[14px]"
             >
-              <MdPhone size={18} className="text-gold" />
+              <MdPhone size={17} className="text-gold" />
               {COMPANY.phone}
             </a>
             <Link
               href="/contact"
-              className="flex items-center justify-center gap-2 w-full btn-primary rounded-xl py-3.5"
+              className="flex items-center justify-center gap-2 w-full bg-gold hover:bg-[#B8950F]
+                         text-black font-black uppercase tracking-wide text-[13px]
+                         py-3.5 rounded-xl transition-all active:scale-[0.98]"
             >
-              Request Free Estimate
+              Request Free Estimate <MdArrowForward size={15} />
             </Link>
           </div>
         </div>
