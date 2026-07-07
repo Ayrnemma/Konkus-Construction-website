@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-charcoal: #2E2D38;
+  --color-gold: #9B7535;
+  --color-wood: #C4924A;
+  --color-cream: #F8F6F3;
+  --color-cream-dark: #EEE9E1;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #ffffff;
+    color: var(--color-charcoal);
+  }
+
+  ::selection {
+    background-color: var(--color-gold);
+    color: white;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-charcoal);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-gold text-white font-semibold px-8 py-4 rounded-xl
+           shadow-gold hover:bg-gold-700 active:scale-95 transition-all duration-200 text-base;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 bg-white text-charcoal font-semibold px-8 py-4 rounded-xl
+           border-2 border-charcoal hover:bg-charcoal hover:text-white active:scale-95 transition-all duration-200 text-base;
+  }
+
+  .btn-outline-gold {
+    @apply inline-flex items-center justify-center gap-2 bg-transparent text-gold font-semibold px-8 py-4 rounded-xl
+           border-2 border-gold hover:bg-gold hover:text-white active:scale-95 transition-all duration-200 text-base;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 bg-transparent text-white font-semibold px-8 py-4 rounded-xl
+           border-2 border-white/40 hover:bg-white/10 hover:border-white active:scale-95 transition-all duration-200 text-base;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold text-charcoal leading-tight;
+  }
+
+  .section-subtitle {
+    @apply text-gold text-sm font-semibold uppercase tracking-[0.2em] mb-4;
+  }
+
+  .section-description {
+    @apply text-charcoal/70 text-lg leading-relaxed;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-premium hover:shadow-premium-lg transition-all duration-300;
+  }
+
+  .gold-divider {
+    @apply w-16 h-1 bg-gradient-to-r from-gold to-wood rounded-full;
+  }
+
+  .img-placeholder {
+    @apply bg-gradient-to-br from-cream-dark to-cream animate-pulse rounded-xl;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mask-gradient-right {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+}
+
+/* Loading animation */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: var(--color-charcoal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.page-loader.loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Image placeholder shimmer */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    #EEE9E1 0%,
+    #F8F6F3 50%,
+    #EEE9E1 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Masonry gallery */
+.masonry-grid {
+  column-count: 1;
+  column-gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .masonry-grid { column-count: 2; }
+}
+
+@media (min-width: 1024px) {
+  .masonry-grid { column-count: 3; }
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
+
+/* Smooth scroll offset for sticky header */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-charcoal);
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
