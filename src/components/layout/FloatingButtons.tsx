@@ -10,33 +10,36 @@ export function FloatingButtons() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 400);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const fn = () => setVisible(window.scrollY > 500);
+    window.addEventListener('scroll', fn, { passive: true });
+    return () => window.removeEventListener('scroll', fn);
   }, []);
 
   return (
     <div
       className={clsx(
-        'fixed bottom-6 right-4 z-50 flex flex-col gap-3 lg:hidden transition-all duration-300',
+        'fixed bottom-5 right-4 z-50 flex flex-col gap-2.5 lg:hidden transition-all duration-300',
         visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
       )}
     >
       <Link
         href="/contact"
-        className="flex items-center gap-2 bg-gold text-white text-sm font-bold px-4 py-3 rounded-2xl shadow-gold shadow-lg hover:bg-gold-700 active:scale-95 transition-all"
+        className="flex items-center gap-2 bg-gold text-white text-[13px] font-bold
+                   px-4 py-3 rounded-xl shadow-gold-lg hover:bg-gold-700 active:scale-95 transition-all"
         aria-label="Request estimate"
       >
-        <MdRequestQuote size={20} />
-        <span>Estimate</span>
+        <MdRequestQuote size={18} />
+        Estimate
       </Link>
       <a
         href={COMPANY.phoneHref}
-        className="flex items-center gap-2 bg-charcoal text-white text-sm font-bold px-4 py-3 rounded-2xl shadow-premium-lg hover:bg-charcoal/90 active:scale-95 transition-all"
+        className="flex items-center gap-2 bg-charcoal text-white text-[13px] font-bold
+                   px-4 py-3 rounded-xl shadow-dark-lg hover:bg-charcoal-700 active:scale-95 transition-all
+                   border border-white/10"
         aria-label={`Call ${COMPANY.phone}`}
       >
-        <MdPhone size={20} />
-        <span>Call Now</span>
+        <MdPhone size={18} />
+        Call Now
       </a>
     </div>
   );

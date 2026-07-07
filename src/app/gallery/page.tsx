@@ -15,73 +15,78 @@ export default function GalleryPage() {
     : GALLERY_IMAGES.filter((img) => img.category === activeFilter);
 
   return (
-    <div className="pt-20">
+    <div className="pt-[76px]">
+
       {/* Hero */}
-      <section className="py-20 bg-charcoal text-center">
-        <p className="text-gold text-sm font-semibold uppercase tracking-[0.2em] mb-4">Our Portfolio</p>
-        <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-          Project{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-wood">Gallery</span>
+      <section className="py-24 bg-charcoal text-center">
+        <p className="eyebrow-light mb-5">Our Portfolio</p>
+        <h1 className="section-heading-light text-5xl md:text-6xl mb-6">
+          Project <span className="text-gold">Gallery</span>
         </h1>
-        <p className="text-white/60 text-xl max-w-xl mx-auto">
-          Browse our completed projects — each one a testament to quality craftsmanship and attention to detail.
+        <div className="gold-rule mx-auto mb-6" />
+        <p className="section-body-light max-w-md mx-auto">
+          Browse completed projects — each one a testament to honest craftsmanship
+          and attention to detail.
+        </p>
+        <p className="text-white/25 text-xs mt-4">
+          Placeholder photos — will be replaced with actual project photos.
         </p>
       </section>
 
       {/* Gallery */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Filters */}
-          <div className="flex items-center gap-3 flex-wrap justify-center mb-12">
-            {GALLERY_FILTERS.map((filter) => (
+
+          {/* Filter bar */}
+          <div className="flex flex-wrap justify-center gap-2.5 mb-12">
+            {GALLERY_FILTERS.map((f) => (
               <button
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
-                className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 ${
-                  activeFilter === filter
+                key={f}
+                onClick={() => setActiveFilter(f)}
+                className={`px-5 py-2.5 rounded-full text-[13px] font-semibold transition-all duration-200 ${
+                  activeFilter === f
                     ? 'bg-gold text-white shadow-gold'
-                    : 'bg-cream text-charcoal/70 hover:bg-gold/10 hover:text-gold'
+                    : 'bg-cream text-charcoal/65 hover:bg-gold/8 hover:text-gold border border-cream-dark'
                 }`}
               >
-                {filter}
+                {f}
               </button>
             ))}
           </div>
 
-          {/* Masonry grid */}
+          {/* Masonry */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activeFilter}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.25 }}
               className="masonry-grid"
             >
               {filtered.map((img) => (
                 <motion.div
                   key={img.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.35 }}
-                  className="masonry-item group relative overflow-hidden rounded-2xl shadow-premium hover:shadow-premium-lg cursor-pointer"
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3 }}
+                  className="masonry-item group relative overflow-hidden rounded-2xl shadow-dark-sm hover:shadow-dark cursor-pointer"
                 >
-                  <div className={`relative w-full overflow-hidden ${
+                  <div className={`relative w-full ${
                     img.height === 'tall' ? 'aspect-[3/4]' :
                     img.height === 'short' ? 'aspect-[4/3]' : 'aspect-square'
                   }`}>
-                    <Image
-                      src={img.src}
-                      alt={img.alt}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      loading="lazy"
-                    />
+                    <Image src={img.src} alt={img.alt} fill
+                           className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+                           loading="lazy" />
                     <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/40 transition-all duration-300" />
-                    <div className="absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                      <span className="bg-gold text-white text-xs font-bold px-3 py-1 rounded-full self-start mb-2">
+                    <div className="absolute inset-0 flex flex-col justify-end p-4
+                                    opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0
+                                    transition-all duration-300">
+                      <span className="bg-gold text-white text-[11px] font-bold uppercase tracking-wider
+                                        px-3 py-1.5 rounded-full self-start mb-1.5">
                         {img.category}
                       </span>
                       <p className="text-white text-sm font-medium">{img.alt}</p>
@@ -92,28 +97,20 @@ export default function GalleryPage() {
             </motion.div>
           </AnimatePresence>
 
-          {filtered.length === 0 && (
-            <div className="text-center py-20 text-charcoal/40">
-              <p className="text-lg">No projects in this category yet.</p>
-            </div>
-          )}
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-cream">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-charcoal mb-4">
-            Ready to Add Your Project to Our Gallery?
-          </h2>
-          <p className="text-charcoal/60 mb-8">
-            Let&apos;s create something beautiful together. Request your free estimate today.
-          </p>
-          <Link href="/contact" className="btn-primary">
-            Request Free Estimate <MdArrowForward size={18} />
+      <section className="py-20 bg-charcoal">
+        <div className="max-w-2xl mx-auto px-4 text-center">
+          <h2 className="section-heading-light mb-4">Start Your Project</h2>
+          <p className="section-body-light mb-8">Request a free estimate and let&apos;s get to work.</p>
+          <Link href="/contact" className="btn-primary px-10">
+            Request Free Estimate <MdArrowForward size={17} />
           </Link>
         </div>
       </section>
+
     </div>
   );
 }

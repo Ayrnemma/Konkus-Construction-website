@@ -2,136 +2,145 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { MdPhone, MdArrowForward, MdStar, MdVerified } from 'react-icons/md';
+import { MdPhone, MdArrowForward, MdVerified, MdLocationOn } from 'react-icons/md';
 import { motion } from 'framer-motion';
 import { COMPANY } from '@/lib/constants';
 
-const stats = [
-  { value: '500+', label: 'Projects Completed' },
-  { value: '15+', label: 'Years Experience' },
-  { value: '100%', label: 'Satisfaction Rate' },
-];
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 32 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.75, delay, ease: [0.22, 1, 0.36, 1] },
+});
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Image */}
+    <section className="relative min-h-screen flex flex-col overflow-hidden bg-charcoal">
+
+      {/* ── Background image ───────────────────── */}
       <div className="absolute inset-0 z-0">
         <Image
           src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1920&q=85"
-          alt="Beautiful home construction and remodeling"
+          alt="Premium home construction"
           fill
-          className="object-cover object-center"
+          className="object-cover object-center scale-105"
           priority
           quality={90}
         />
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-charcoal/90 via-charcoal/75 to-charcoal/50" />
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent" />
+        {/* Multi-layer dark overlay — blends seamlessly with the header */}
+        <div className="absolute inset-0 bg-charcoal/75" />
+        {/* Subtle vignette */}
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/40 via-transparent to-charcoal/80" />
+        {/* Top strip — ensures header blends in perfectly */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-charcoal to-transparent" />
+        {/* Bottom fade into next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-charcoal to-transparent" />
       </div>
 
-      {/* Decorative elements */}
-      <div className="absolute top-1/4 right-10 w-72 h-72 bg-gold/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 left-10 w-96 h-96 bg-wood/10 rounded-full blur-3xl pointer-events-none" />
+      {/* ── Gold corner accent lines ───────────── */}
+      <div className="absolute top-[76px] left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/25 to-transparent z-10" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 pb-20">
-        <div className="max-w-3xl">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-8"
-          >
-            <MdVerified className="text-gold" size={18} />
-            <span className="text-white/90 text-sm font-semibold">Licensed & Insured · Downriver Michigan</span>
-          </motion.div>
+      {/* ── Content ────────────────────────────── */}
+      <div className="relative z-10 flex-1 flex items-center">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24">
+          <div className="flex flex-col items-center text-center">
 
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.05] mb-6 text-balance"
-          >
-            Honest Craftsmanship.{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-wood">
-              Built to Last.
-            </span>
-          </motion.h1>
-
-          {/* Subheadline */}
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-xl text-white/75 leading-relaxed mb-10 max-w-2xl"
-          >
-            Serving homeowners throughout Downriver Michigan with dependable construction services,
-            quality workmanship, and honest communication from start to finish.
-          </motion.p>
-
-          {/* Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 mb-16"
-          >
-            <Link href="/contact" className="btn-primary text-base px-8 py-4 rounded-xl shadow-gold">
-              Request Free Estimate
-              <MdArrowForward size={20} />
-            </Link>
-            <a href={COMPANY.phoneHref} className="btn-ghost text-base px-8 py-4 rounded-xl">
-              <MdPhone size={20} />
-              Call {COMPANY.phone}
-            </a>
-          </motion.div>
-
-          {/* Stars & Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="flex flex-col sm:flex-row items-start sm:items-center gap-8"
-          >
-            {/* Stars */}
-            <div className="flex flex-col gap-1">
-              <div className="flex items-center gap-1">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <MdStar key={i} className="text-gold" size={22} />
-                ))}
-                <span className="text-white/90 font-semibold text-sm ml-2">5.0</span>
-              </div>
-              <p className="text-white/60 text-xs">100+ 5-star reviews from local homeowners</p>
-            </div>
-
-            {/* Divider */}
-            <div className="hidden sm:block w-px h-12 bg-white/20" />
-
-            {/* Stats */}
-            <div className="flex items-center gap-8">
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div className="text-2xl font-bold text-white">{stat.value}</div>
-                  <div className="text-white/50 text-xs mt-0.5">{stat.label}</div>
+            {/* ── LOGO — the centrepiece ───────── */}
+            <motion.div
+              {...fadeUp(0.05)}
+              className="mb-10 md:mb-12"
+            >
+              <div className="relative inline-block">
+                {/* Glow behind logo */}
+                <div className="absolute inset-0 blur-2xl opacity-20 scale-110 bg-gold rounded-full" />
+                <div className="relative h-[110px] w-[360px] max-w-[90vw]">
+                  <Image
+                    src="/logo.png"
+                    alt="Konkus Construction"
+                    fill
+                    className="object-contain drop-shadow-[0_4px_32px_rgba(155,117,53,0.35)]"
+                    priority
+                  />
                 </div>
-              ))}
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
+
+            {/* ── Decorative gold rule ─────────── */}
+            <motion.div
+              {...fadeUp(0.15)}
+              className="w-20 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent mb-10"
+            />
+
+            {/* ── Headline ─────────────────────── */}
+            <motion.h1
+              {...fadeUp(0.2)}
+              className="text-5xl sm:text-6xl lg:text-7xl xl:text-[80px] font-bold text-white leading-[1.02] tracking-[-0.03em] mb-6 max-w-4xl"
+            >
+              Honest Craftsmanship.{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-gold-light to-gold">
+                Built to Last.
+              </span>
+            </motion.h1>
+
+            {/* ── Subheadline ──────────────────── */}
+            <motion.p
+              {...fadeUp(0.3)}
+              className="text-lg md:text-xl text-white/60 max-w-2xl leading-relaxed mb-10"
+            >
+              Serving homeowners throughout Downriver Michigan with dependable
+              construction services, quality workmanship, and honest communication
+              from start to finish.
+            </motion.p>
+
+            {/* ── CTA buttons ──────────────────── */}
+            <motion.div
+              {...fadeUp(0.4)}
+              className="flex flex-col sm:flex-row items-center gap-3 mb-14"
+            >
+              <Link href="/contact" className="btn-primary px-10 py-4 rounded-xl text-[15px]">
+                Request Free Estimate
+                <MdArrowForward size={18} />
+              </Link>
+              <a
+                href={COMPANY.phoneHref}
+                className="btn-ghost-white px-10 py-4 rounded-xl text-[15px]"
+              >
+                <MdPhone size={18} />
+                Call {COMPANY.phone}
+              </a>
+            </motion.div>
+
+            {/* ── Trust badges — ONLY truthful ones ── */}
+            <motion.div
+              {...fadeUp(0.5)}
+              className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6"
+            >
+              <div className="flex items-center gap-2 bg-white/8 backdrop-blur-sm border border-white/12 rounded-full px-5 py-2.5">
+                <MdVerified className="text-gold shrink-0" size={17} />
+                <span className="text-white/85 text-sm font-medium">Licensed &amp; Insured</span>
+              </div>
+              <div className="hidden sm:block w-px h-4 bg-white/20" />
+              <div className="flex items-center gap-2 bg-white/8 backdrop-blur-sm border border-white/12 rounded-full px-5 py-2.5">
+                <MdLocationOn className="text-gold shrink-0" size={17} />
+                <span className="text-white/85 text-sm font-medium">Serving Downriver Michigan</span>
+              </div>
+            </motion.div>
+
+          </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* ── Scroll cue ─────────────────────────── */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        transition={{ delay: 1.4, duration: 0.8 }}
+        className="relative z-10 flex flex-col items-center gap-2 pb-10"
+        aria-hidden="true"
       >
-        <span className="text-white/40 text-xs font-medium tracking-widest uppercase">Scroll</span>
-        <div className="w-0.5 h-12 bg-gradient-to-b from-white/40 to-transparent" />
+        <div className="w-[1px] h-10 bg-gradient-to-b from-white/40 to-transparent" />
+        <span className="text-white/30 text-[10px] uppercase tracking-[0.2em] font-medium">Scroll</span>
       </motion.div>
+
     </section>
   );
 }

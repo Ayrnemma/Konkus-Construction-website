@@ -1,72 +1,102 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { MdPhone, MdEmail, MdLocationOn, MdArrowForward } from 'react-icons/md';
+import { FaFacebookF, FaInstagram } from 'react-icons/fa';
 import { COMPANY, NAV_LINKS, SERVICES, SERVICE_AREAS } from '@/lib/constants';
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-charcoal text-white">
-      {/* Main footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
+    <footer className="bg-charcoal-800 border-t border-white/[0.07]">
+
+      {/* ── Main content ──────────────────────────── */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-          {/* Brand column */}
+
+          {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-6">
-              <div className="relative h-16 w-52 bg-white rounded-xl p-2">
+              <div className="relative h-[60px] w-[200px] bg-white/5 border border-white/10 rounded-xl p-2">
                 <Image src="/logo.png" alt="Konkus Construction" fill className="object-contain p-1" />
               </div>
             </Link>
-            <p className="text-white/60 text-sm leading-relaxed mb-6">
-              Family-owned construction serving Downriver Michigan with honest craftsmanship and quality workmanship since day one.
+
+            <p className="text-white/45 text-[14px] leading-relaxed mb-7 max-w-xs">
+              Family-owned construction serving Downriver Michigan with honest craftsmanship
+              and quality workmanship.
             </p>
+
+            {/* Contact */}
             <div className="space-y-3">
-              <a
-                href={COMPANY.phoneHref}
-                className="flex items-center gap-3 text-white/70 hover:text-gold transition-colors group"
-              >
-                <span className="w-9 h-9 bg-gold/10 rounded-lg flex items-center justify-center group-hover:bg-gold/20 transition-colors">
-                  <MdPhone className="text-gold" size={18} />
+              <a href={COMPANY.phoneHref}
+                 className="flex items-center gap-3 text-white/55 hover:text-gold transition-colors group">
+                <span className="w-8 h-8 bg-white/5 group-hover:bg-gold/10 rounded-lg flex items-center justify-center transition-colors">
+                  <MdPhone className="text-gold" size={15} />
                 </span>
-                <span className="text-sm font-medium">{COMPANY.phone}</span>
+                <span className="text-[14px] font-medium">{COMPANY.phone}</span>
               </a>
-              <a
-                href={COMPANY.emailHref}
-                className="flex items-center gap-3 text-white/70 hover:text-gold transition-colors group"
-              >
-                <span className="w-9 h-9 bg-gold/10 rounded-lg flex items-center justify-center group-hover:bg-gold/20 transition-colors">
-                  <MdEmail className="text-gold" size={18} />
+              <a href={COMPANY.emailHref}
+                 className="flex items-center gap-3 text-white/55 hover:text-gold transition-colors group">
+                <span className="w-8 h-8 bg-white/5 group-hover:bg-gold/10 rounded-lg flex items-center justify-center transition-colors">
+                  <MdEmail className="text-gold" size={15} />
                 </span>
-                <span className="text-sm font-medium break-all">{COMPANY.email}</span>
+                <span className="text-[13px] font-medium break-all">{COMPANY.email}</span>
               </a>
-              <div className="flex items-center gap-3 text-white/60">
-                <span className="w-9 h-9 bg-gold/10 rounded-lg flex items-center justify-center">
-                  <MdLocationOn className="text-gold" size={18} />
+              <div className="flex items-center gap-3 text-white/45">
+                <span className="w-8 h-8 bg-white/5 rounded-lg flex items-center justify-center">
+                  <MdLocationOn className="text-gold" size={15} />
                 </span>
-                <span className="text-sm font-medium">{COMPANY.serviceArea}</span>
+                <span className="text-[14px] font-medium">{COMPANY.serviceArea}</span>
               </div>
+            </div>
+
+            {/* Social */}
+            <div className="flex items-center gap-3 mt-7">
+              <a
+                href={COMPANY.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Konkus Construction on Facebook"
+                className="w-9 h-9 bg-white/5 hover:bg-gold/15 border border-white/10 hover:border-gold/30
+                           rounded-lg flex items-center justify-center text-white/50 hover:text-gold
+                           transition-all duration-200"
+              >
+                <FaFacebookF size={14} />
+              </a>
+              <a
+                href={COMPANY.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Konkus Construction on Instagram"
+                className="w-9 h-9 bg-white/5 hover:bg-gold/15 border border-white/10 hover:border-gold/30
+                           rounded-lg flex items-center justify-center text-white/50 hover:text-gold
+                           transition-all duration-200"
+              >
+                <FaInstagram size={14} />
+              </a>
             </div>
           </div>
 
-          {/* Navigation */}
+          {/* Quick links */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-widest text-gold mb-6">Navigation</h3>
-            <ul className="space-y-3">
+            <h3 className="text-[11px] font-bold uppercase tracking-widest text-gold mb-6">
+              Quick Links
+            </h3>
+            <ul className="space-y-2.5">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm group"
-                  >
-                    <MdArrowForward size={14} className="text-gold opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
+                  <Link href={link.href}
+                        className="flex items-center gap-2 text-white/50 hover:text-white text-[14px] transition-colors group">
+                    <MdArrowForward size={13} className="text-gold opacity-0 group-hover:opacity-100 -translate-x-1.5 group-hover:translate-x-0 transition-all" />
                     {link.label}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link href="/contact" className="flex items-center gap-2 text-gold hover:text-wood transition-colors text-sm font-semibold group">
-                  <MdArrowForward size={14} />
+                <Link href="/contact"
+                      className="flex items-center gap-2 text-gold hover:text-gold-light text-[14px] font-semibold transition-colors mt-2">
+                  <MdArrowForward size={13} />
                   Request Free Estimate
                 </Link>
               </li>
@@ -75,64 +105,61 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-widest text-gold mb-6">Our Services</h3>
-            <ul className="space-y-3">
-              {SERVICES.slice(0, 8).map((service) => (
-                <li key={service.id}>
-                  <Link
-                    href={`/services#${service.id}`}
-                    className="flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm group"
-                  >
-                    <MdArrowForward size={14} className="text-gold opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
-                    {service.title}
+            <h3 className="text-[11px] font-bold uppercase tracking-widest text-gold mb-6">
+              Our Services
+            </h3>
+            <ul className="space-y-2.5">
+              {SERVICES.map((s) => (
+                <li key={s.id}>
+                  <Link href={`/services#${s.id}`}
+                        className="flex items-center gap-2 text-white/50 hover:text-white text-[14px] transition-colors group">
+                    <MdArrowForward size={13} className="text-gold opacity-0 group-hover:opacity-100 -translate-x-1.5 group-hover:translate-x-0 transition-all" />
+                    {s.title}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Service Areas */}
+          {/* Service area */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-widest text-gold mb-6">Service Areas</h3>
+            <h3 className="text-[11px] font-bold uppercase tracking-widest text-gold mb-6">
+              Service Area
+            </h3>
             <div className="flex flex-wrap gap-2">
               {SERVICE_AREAS.map((area) => (
-                <span
-                  key={area}
-                  className="text-xs text-white/60 bg-white/5 hover:bg-gold/10 hover:text-gold transition-colors px-3 py-1.5 rounded-full cursor-default"
-                >
+                <span key={area}
+                      className="text-[12px] text-white/45 bg-white/4 hover:bg-gold/8 hover:text-gold/80
+                                 border border-white/8 px-3 py-1.5 rounded-full transition-colors cursor-default">
                   {area}
                 </span>
               ))}
             </div>
-            <div className="mt-8 p-4 bg-gold/10 rounded-xl border border-gold/20">
-              <p className="text-sm text-white/80 mb-3">Ready to start your project?</p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-gold hover:text-white transition-colors"
-              >
-                Get a Free Estimate <MdArrowForward size={16} />
-              </Link>
-            </div>
           </div>
+
         </div>
       </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/40 text-sm text-center sm:text-left">
-            © {currentYear} {COMPANY.name}. All rights reserved. Proudly serving Downriver Michigan.
+      {/* ── Bottom bar ────────────────────────────── */}
+      <div className="border-t border-white/[0.07]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5
+                        flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-white/30 text-[13px]">
+            © {year} {COMPANY.name}. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            <Link href="/privacy-policy" className="text-white/40 hover:text-white/70 text-xs transition-colors">
+          <div className="flex items-center gap-5">
+            <Link href="/privacy-policy"
+                  className="text-white/30 hover:text-white/60 text-[12px] transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms-of-service" className="text-white/40 hover:text-white/70 text-xs transition-colors">
+            <Link href="/terms-of-service"
+                  className="text-white/30 hover:text-white/60 text-[12px] transition-colors">
               Terms of Service
             </Link>
           </div>
         </div>
       </div>
+
     </footer>
   );
 }

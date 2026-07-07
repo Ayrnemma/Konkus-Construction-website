@@ -8,71 +8,88 @@ import { useInView } from 'react-intersection-observer';
 import { COMPANY } from '@/lib/constants';
 
 export function ContactCTA() {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.08 });
 
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden" ref={ref}>
+    <section className="relative py-28 lg:py-40 overflow-hidden" ref={ref}>
+
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1920&q=80"
-          alt="Beautiful home construction"
+          src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1920&q=80"
+          alt="Build something great with Konkus Construction"
           fill
-          className="object-cover"
+          className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-charcoal/85" />
+        <div className="absolute inset-0 bg-charcoal/88" />
+        {/* Gradient edges */}
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/30 via-transparent to-charcoal/40" />
       </div>
+
+      {/* Gold line top */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent z-10" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="text-gold text-sm font-semibold uppercase tracking-[0.2em] mb-4">
-            Ready to Get Started?
-          </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+          <p className="eyebrow-light mb-6">Let&apos;s Talk</p>
+
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05]
+                          tracking-[-0.03em] mb-6">
             Let&apos;s Build Something{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-wood">
-              Exceptional
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-gold-light to-gold">
+              Great Together
             </span>
           </h2>
-          <p className="text-white/70 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
-            Get your free, no-obligation estimate today. We&apos;ll listen to your vision,
-            assess your project, and give you an honest price — no surprises.
+
+          <div className="gold-rule mx-auto mb-8" />
+
+          <p className="text-white/60 text-lg md:text-xl max-w-xl mx-auto mb-12 leading-relaxed">
+            Free estimates, honest pricing, dependable work.
+            Reach out — we&apos;d love to hear about your project.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <Link href="/contact" className="btn-primary text-base px-10 py-4 rounded-xl shadow-gold">
-              Request Free Estimate <MdArrowForward size={20} />
-            </Link>
-          </div>
+          {/* Primary CTA */}
+          <Link href="/contact" className="btn-primary px-12 py-5 text-[16px] rounded-xl inline-flex mb-10">
+            Request Free Estimate <MdArrowForward size={19} />
+          </Link>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          {/* Contact options */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href={COMPANY.phoneHref}
-              className="flex items-center gap-3 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold px-6 py-4 rounded-xl transition-all group"
+              className="flex items-center gap-3 bg-white/8 hover:bg-white/14 border border-white/15
+                         hover:border-white/25 text-white font-semibold px-7 py-4 rounded-2xl
+                         transition-all duration-200 group w-full sm:w-auto justify-center"
             >
-              <MdPhone className="text-gold" size={22} />
+              <MdPhone className="text-gold shrink-0" size={22} />
               <div className="text-left">
-                <div className="text-xs text-white/60 font-normal">Call Us Now</div>
-                <div className="text-base">{COMPANY.phone}</div>
+                <div className="text-white/50 text-[11px] font-medium mb-0.5 uppercase tracking-wider">Call Us</div>
+                <div className="text-[16px] font-bold">{COMPANY.phone}</div>
               </div>
             </a>
             <a
               href={COMPANY.emailHref}
-              className="flex items-center gap-3 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold px-6 py-4 rounded-xl transition-all group"
+              className="flex items-center gap-3 bg-white/8 hover:bg-white/14 border border-white/15
+                         hover:border-white/25 text-white font-semibold px-7 py-4 rounded-2xl
+                         transition-all duration-200 group w-full sm:w-auto justify-center"
             >
-              <MdEmail className="text-gold" size={22} />
+              <MdEmail className="text-gold shrink-0" size={22} />
               <div className="text-left">
-                <div className="text-xs text-white/60 font-normal">Email Us</div>
-                <div className="text-sm">{COMPANY.email}</div>
+                <div className="text-white/50 text-[11px] font-medium mb-0.5 uppercase tracking-wider">Email Us</div>
+                <div className="text-[14px] font-bold break-all">{COMPANY.email}</div>
               </div>
             </a>
           </div>
+
         </motion.div>
       </div>
+
+      {/* Gold line bottom */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent z-10" />
     </section>
   );
 }

@@ -5,11 +5,14 @@
 @tailwind utilities;
 
 :root {
-  --color-charcoal: #2E2D38;
+  --color-charcoal: #1C1B22;
+  --color-charcoal-mid: #2A2933;
   --color-gold: #9B7535;
-  --color-wood: #C4924A;
+  --color-gold-light: #C4924A;
+  --color-white: #FFFFFF;
   --color-cream: #F8F6F3;
   --color-cream-dark: #EEE9E1;
+  --header-height: 76px;
 }
 
 @layer base {
@@ -30,153 +33,149 @@
     color: white;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    letter-spacing: -0.02em;
+  h1, h2, h3, h4 {
+    letter-spacing: -0.025em;
     color: var(--color-charcoal);
+  }
+
+  section[id] {
+    scroll-margin-top: var(--header-height);
   }
 }
 
 @layer components {
+  /* ─── Buttons ─────────────────────────── */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 bg-gold text-white font-semibold px-8 py-4 rounded-xl
-           shadow-gold hover:bg-gold-700 active:scale-95 transition-all duration-200 text-base;
+    @apply inline-flex items-center justify-center gap-2
+           bg-gold text-white font-semibold
+           px-8 py-4 rounded-xl
+           shadow-[0_4px_20px_rgba(155,117,53,0.35)]
+           hover:bg-gold-700 hover:shadow-[0_6px_28px_rgba(155,117,53,0.5)]
+           active:scale-[0.98]
+           transition-all duration-200 text-[15px];
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 bg-white text-charcoal font-semibold px-8 py-4 rounded-xl
-           border-2 border-charcoal hover:bg-charcoal hover:text-white active:scale-95 transition-all duration-200 text-base;
+    @apply inline-flex items-center justify-center gap-2
+           bg-white text-charcoal font-semibold
+           px-8 py-4 rounded-xl border border-white/20
+           hover:bg-white/90 active:scale-[0.98]
+           transition-all duration-200 text-[15px];
   }
 
   .btn-outline-gold {
-    @apply inline-flex items-center justify-center gap-2 bg-transparent text-gold font-semibold px-8 py-4 rounded-xl
-           border-2 border-gold hover:bg-gold hover:text-white active:scale-95 transition-all duration-200 text-base;
+    @apply inline-flex items-center justify-center gap-2
+           bg-transparent text-gold font-semibold
+           px-8 py-4 rounded-xl border-2 border-gold
+           hover:bg-gold hover:text-white
+           active:scale-[0.98]
+           transition-all duration-200 text-[15px];
   }
 
-  .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 bg-transparent text-white font-semibold px-8 py-4 rounded-xl
-           border-2 border-white/40 hover:bg-white/10 hover:border-white active:scale-95 transition-all duration-200 text-base;
+  .btn-ghost-white {
+    @apply inline-flex items-center justify-center gap-2
+           bg-white/10 backdrop-blur-sm text-white font-semibold
+           px-8 py-4 rounded-xl border border-white/25
+           hover:bg-white/20 hover:border-white/40
+           active:scale-[0.98]
+           transition-all duration-200 text-[15px];
   }
 
-  .section-title {
-    @apply text-4xl md:text-5xl font-bold text-charcoal leading-tight;
+  /* ─── Section labels ──────────────────── */
+  .eyebrow {
+    @apply text-gold text-xs font-bold uppercase tracking-[0.22em] mb-3;
   }
 
-  .section-subtitle {
-    @apply text-gold text-sm font-semibold uppercase tracking-[0.2em] mb-4;
+  .eyebrow-light {
+    @apply text-gold/80 text-xs font-bold uppercase tracking-[0.22em] mb-3;
   }
 
-  .section-description {
-    @apply text-charcoal/70 text-lg leading-relaxed;
+  .section-heading {
+    @apply text-4xl md:text-5xl font-bold leading-[1.1] text-charcoal;
   }
 
-  .card {
-    @apply bg-white rounded-2xl shadow-premium hover:shadow-premium-lg transition-all duration-300;
+  .section-heading-light {
+    @apply text-4xl md:text-5xl font-bold leading-[1.1] text-white;
   }
 
-  .gold-divider {
-    @apply w-16 h-1 bg-gradient-to-r from-gold to-wood rounded-full;
+  .section-body {
+    @apply text-charcoal/65 text-[17px] leading-relaxed;
   }
 
+  .section-body-light {
+    @apply text-white/65 text-[17px] leading-relaxed;
+  }
+
+  /* ─── Gold accent line ────────────────── */
+  .gold-rule {
+    @apply w-12 h-[3px] bg-gradient-to-r from-gold to-gold-light rounded-full;
+  }
+
+  /* ─── Cards ───────────────────────────── */
+  .card-white {
+    @apply bg-white rounded-2xl shadow-[0_2px_20px_rgba(28,27,34,0.06)]
+           hover:shadow-[0_8px_40px_rgba(28,27,34,0.12)]
+           transition-all duration-300;
+  }
+
+  .card-dark {
+    @apply bg-white/[0.06] border border-white/10 rounded-2xl
+           hover:bg-white/[0.09] hover:border-white/20
+           transition-all duration-300;
+  }
+
+  .card-glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl;
+  }
+
+  /* ─── Image placeholder ───────────────── */
   .img-placeholder {
-    @apply bg-gradient-to-br from-cream-dark to-cream animate-pulse rounded-xl;
+    @apply bg-gradient-to-br from-charcoal-100 to-cream animate-pulse rounded-xl;
   }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  .text-balance { text-wrap: balance; }
 
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-
-  .mask-gradient-right {
-    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
 }
 
-/* Loading animation */
-.page-loader {
-  position: fixed;
-  inset: 0;
-  background: var(--color-charcoal);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-.page-loader.loaded {
-  opacity: 0;
-  visibility: hidden;
-}
-
-/* Image placeholder shimmer */
-.shimmer {
-  background: linear-gradient(
-    90deg,
-    #EEE9E1 0%,
-    #F8F6F3 50%,
-    #EEE9E1 100%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-}
-
-/* Masonry gallery */
+/* ── Masonry gallery ────────────────────── */
 .masonry-grid {
   column-count: 1;
   column-gap: 1rem;
 }
-
-@media (min-width: 640px) {
-  .masonry-grid { column-count: 2; }
-}
-
-@media (min-width: 1024px) {
-  .masonry-grid { column-count: 3; }
-}
+@media (min-width: 640px)  { .masonry-grid { column-count: 2; } }
+@media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
 
 .masonry-item {
   break-inside: avoid;
   margin-bottom: 1rem;
 }
 
-/* Smooth scroll offset for sticky header */
-section[id] {
-  scroll-margin-top: 80px;
-}
+/* ── Custom scrollbar ───────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: var(--color-gold); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-charcoal); }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-cream);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-gold);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-charcoal);
-}
-
-/* Focus styles */
+/* ── Focus ──────────────────────────────── */
 *:focus-visible {
   outline: 2px solid var(--color-gold);
-  outline-offset: 2px;
+  outline-offset: 3px;
   border-radius: 4px;
+}
+
+/* ── Noise texture overlay helper ───────── */
+.texture-noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
 }
