@@ -54,25 +54,42 @@ export function ServiceArea() {
           ))}
         </motion.div>
 
-        {/* Map placeholder card */}
+        {/* Google Maps embed */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65, delay: 0.35 }}
-          className="max-w-2xl mx-auto"
+          className="max-w-4xl mx-auto"
         >
-          <div className="relative rounded-3xl overflow-hidden bg-cream border border-cream-dark
-                          aspect-[16/7] flex items-center justify-center shadow-dark-sm">
-            <div className="text-center p-8">
-              <MdLocationOn className="text-gold mx-auto mb-3 animate-float" size={40} />
-              <p className="font-bold text-charcoal text-lg mb-1">Downriver Michigan</p>
-              <p className="text-charcoal/45 text-sm">
-                Replace this with a Google Maps embed
-              </p>
+          {/* Gold header bar */}
+          <div className="bg-charcoal rounded-t-3xl px-6 py-4 flex items-center gap-3">
+            <MdLocationOn className="text-gold shrink-0" size={22} />
+            <div>
+              <p className="text-white font-bold text-sm leading-tight">Service Area</p>
+              <p className="text-white/50 text-xs">Downriver Michigan</p>
             </div>
           </div>
-          <p className="text-center text-charcoal/35 text-xs mt-4">
-            Not on the list? Give us a call — we may still be able to help.
+
+          {/* Map iframe */}
+          <div className="relative w-full aspect-[16/9] rounded-b-3xl overflow-hidden shadow-dark-xl">
+            <iframe
+              src="https://maps.google.com/maps?q=Southgate%2C+Michigan+48195&t=&z=11&ie=UTF8&iwloc=&output=embed"
+              title="Konkus Construction service area — Downriver Michigan"
+              width="100%"
+              height="100%"
+              style={{ border: 0, position: 'absolute', inset: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+
+          <p className="text-center text-charcoal/45 text-sm mt-5">
+            Don&apos;t see your city?{' '}
+            <a href="tel:+17344717196" className="text-gold hover:text-gold-700 font-semibold transition-colors">
+              Give us a call
+            </a>{' '}
+            — we may still be able to help.
           </p>
         </motion.div>
 
