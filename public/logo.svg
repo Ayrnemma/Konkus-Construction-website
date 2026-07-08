@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 530 378">
+  <!--
+    Konkus Construction logo
+    Recreated from uploaded brand asset — transparent background, original colors preserved.
+    Colors: Gold #C4922A · Black #111111 · White #FFFFFF
+  -->
+
+  <!-- ═══ GOLD OUTER CHEVRON BAND ═══ -->
+  <!-- Thick V-shaped gold roof band: outer polygon minus inner cutout -->
+  <polygon
+    points="0,200 265,18 530,200 452,200 265,74 78,200"
+    fill="#C4922A"/>
+
+  <!-- ═══ BLACK HOUSE SILHOUETTE (includes chimney) ═══ -->
+  <!-- Chimney left: x=180, right: x=225 -->
+  <!-- Chimney top: y=20, meets left slope at ≈(180,138), right slope at ≈(225,111) -->
+  <!-- House peak: (265,88)  Left eave: (138,162)  Right eave: (392,162) -->
+  <polygon
+    points="180,20 225,20 225,111 265,88 392,162 392,228 138,228 138,162 180,138"
+    fill="#111111"/>
+
+  <!-- ═══ WHITE INNER ROOF LINES ═══ -->
+  <!-- Two nested V lines on the black house showing the inner roof geometry -->
+  <polyline
+    points="143,215 265,105 387,215"
+    fill="none" stroke="white" stroke-width="8" stroke-linejoin="miter"/>
+  <polyline
+    points="160,215 265,120 370,215"
+    fill="none" stroke="white" stroke-width="5" stroke-linejoin="miter"/>
+
+  <!-- ═══ WINDOW (2×2 grid, white panes with dark dividers) ═══ -->
+  <rect x="247" y="150" width="20" height="20" fill="white"/>
+  <line x1="257" y1="150" x2="257" y2="170" stroke="#222" stroke-width="2.5"/>
+  <line x1="247" y1="160" x2="267" y2="160" stroke="#222" stroke-width="2.5"/>
+
+  <!-- ═══ BLACK TEXT RECTANGLE ═══ -->
+  <rect x="0" y="225" width="530" height="153" fill="#111111"/>
+
+  <!-- ═══ KONKUS (bold white, fills the width) ═══ -->
+  <text
+    x="265"
+    y="316"
+    font-family="'Arial Black', 'Arial Bold', Arial, Helvetica, sans-serif"
+    font-size="108"
+    font-weight="900"
+    fill="white"
+    text-anchor="middle"
+    dominant-baseline="auto"
+    letter-spacing="-2">KONKUS</text>
+
+  <!-- ═══ DECORATIVE LINES + CONSTRUCTION ═══ -->
+  <!-- Left gold rule -->
+  <line x1="14"  y1="350" x2="108" y2="350" stroke="#C4922A" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- CONSTRUCTION in gold with letter spacing -->
+  <text
+    x="265"
+    y="359"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="27"
+    font-weight="700"
+    fill="#C4922A"
+    text-anchor="middle"
+    dominant-baseline="auto"
+    letter-spacing="5">CONSTRUCTION</text>
+
+  <!-- Right gold rule -->
+  <line x1="422" y1="350" x2="516" y2="350" stroke="#C4922A" stroke-width="2.5" stroke-linecap="round"/>
+
+</svg>

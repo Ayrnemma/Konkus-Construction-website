@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { MdPhone, MdMenu, MdClose, MdArrowForward } from 'react-icons/md';
 import { NAV_LINKS, COMPANY } from '@/lib/constants';
@@ -45,18 +44,17 @@ export function Header() {
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
           <div className="flex items-center justify-between gap-6">
 
-            {/* ── Logo ── no box, no background, no filters */}
+            {/* ── Logo — raw SVG, no box, no filters, exact colors ── */}
             <Link href="/" className="group shrink-0" aria-label="Konkus Construction — Home">
-              <div className="relative transition-opacity duration-200 group-hover:opacity-85"
-                   style={{ height: 58, width: 196 }}>
-                <Image
-                  src="/logo.png"
-                  alt="Konkus Construction"
-                  fill
-                  className="object-contain object-left"
-                  priority
-                />
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/logo.svg"
+                alt="Konkus Construction"
+                width={196}
+                height={140}
+                className="transition-opacity duration-200 group-hover:opacity-85 w-auto"
+                style={{ height: 60 }}
+              />
             </Link>
 
             {/* ── Desktop nav ── */}
@@ -136,13 +134,9 @@ export function Header() {
           )}
         >
           <div className="flex items-center justify-between px-6 py-5 border-b border-white/[0.08]">
-            <div className="relative" style={{ height: 46, width: 156 }}>
-              <Image
-                src="/logo.png"
-                alt="Konkus Construction"
-                fill
-                className="object-contain object-left"
-              />
+            <div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo.svg" alt="Konkus Construction" style={{ height: 46 }} className="w-auto" />
             </div>
             <button
               onClick={() => setMobileOpen(false)}

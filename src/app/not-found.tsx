@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { MdHome, MdPhone, MdArrowForward } from 'react-icons/md';
 import { COMPANY } from '@/lib/constants';
 
@@ -7,9 +6,8 @@ export default function NotFound() {
   return (
     <div className="min-h-screen bg-cream flex flex-col items-center justify-center px-4 py-20">
       <div className="max-w-lg w-full text-center">
-        <div className="relative h-20 w-64 mx-auto mb-12">
-          <Image src="/logo.png" alt="Konkus Construction" fill className="object-contain" />
-        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/logo.svg" alt="Konkus Construction" style={{ height: 80 }} className="mx-auto mb-12 w-auto" />
 
         <div className="text-8xl font-bold text-gold/20 mb-4">404</div>
         <h1 className="text-3xl font-bold text-charcoal mb-4">Page Not Found</h1>

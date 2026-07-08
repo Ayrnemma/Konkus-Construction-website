@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
 import { MdCheckCircle, MdPhone, MdHome } from 'react-icons/md';
 import { COMPANY } from '@/lib/constants';
 
@@ -15,9 +14,8 @@ export default function ThankYouPage() {
     <div className="min-h-screen bg-cream flex flex-col items-center justify-center px-4 py-20">
       <div className="max-w-lg w-full text-center">
         {/* Logo */}
-        <div className="relative h-20 w-64 mx-auto mb-10">
-          <Image src="/logo.png" alt="Konkus Construction" fill className="object-contain" />
-        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/logo.svg" alt="Konkus Construction" style={{ height: 80 }} className="mx-auto mb-10 w-auto" />
 
         {/* Check icon */}
         <div className="w-24 h-24 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-8">

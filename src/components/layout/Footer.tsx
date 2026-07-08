@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { MdPhone, MdEmail, MdLocationOn, MdArrowForward } from 'react-icons/md';
 import { FaFacebookF, FaInstagram } from 'react-icons/fa';
 import { COMPANY, NAV_LINKS, SERVICES, SERVICE_AREAS } from '@/lib/constants';
@@ -17,9 +16,13 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-6">
-              <div className="relative h-[60px] w-[200px] bg-white/5 border border-white/10 rounded-xl p-2">
-                <Image src="/logo.png" alt="Konkus Construction" fill className="object-contain p-1" />
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/logo.svg"
+                alt="Konkus Construction"
+                style={{ height: 64 }}
+                className="w-auto"
+              />
             </Link>
 
             <p className="text-white/45 text-[14px] leading-relaxed mb-7 max-w-xs">
