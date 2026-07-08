@@ -1,9 +1,10 @@
 'use client';
 
-import { MdLocationOn, MdCheckCircle } from 'react-icons/md';
+import Link from 'next/link';
+import { MdCheckCircle, MdArrowForward, MdPhone } from 'react-icons/md';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { SERVICE_AREAS } from '@/lib/constants';
+import { SERVICE_AREAS, COMPANY } from '@/lib/constants';
 
 export function ServiceArea() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.08 });
@@ -54,43 +55,40 @@ export function ServiceArea() {
           ))}
         </motion.div>
 
-        {/* Google Maps embed */}
+        {/* CTA card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65, delay: 0.35 }}
-          className="max-w-4xl mx-auto"
+          className="max-w-2xl mx-auto"
         >
-          {/* Gold header bar */}
-          <div className="bg-charcoal rounded-t-3xl px-6 py-4 flex items-center gap-3">
-            <MdLocationOn className="text-gold shrink-0" size={22} />
-            <div>
-              <p className="text-white font-bold text-sm leading-tight">Service Area</p>
-              <p className="text-white/50 text-xs">Downriver Michigan</p>
+          <div className="rounded-3xl overflow-hidden shadow-dark-sm border border-cream-dark">
+            {/* Dark header strip */}
+            <div className="bg-charcoal px-8 py-5 text-center">
+              <p className="text-gold text-xs font-bold uppercase tracking-widest mb-1">
+                Serving Downriver &amp; Metro Detroit
+              </p>
+            </div>
+
+            {/* Body */}
+            <div className="bg-cream px-8 py-8 text-center">
+              <p className="text-charcoal font-bold text-xl mb-3">
+                Don&apos;t see your city listed?
+              </p>
+              <p className="text-charcoal/60 text-sm leading-relaxed mb-8 max-w-sm mx-auto">
+                Give us a call or request a free estimate. We proudly serve many surrounding
+                communities throughout Downriver and Metro Detroit.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Link href="/contact" className="btn-primary">
+                  Request a Free Estimate <MdArrowForward size={17} />
+                </Link>
+                <a href={COMPANY.phoneHref} className="btn-secondary border-charcoal/15">
+                  <MdPhone size={17} /> Call {COMPANY.phone}
+                </a>
+              </div>
             </div>
           </div>
-
-          {/* Map iframe */}
-          <div className="relative w-full aspect-[16/9] rounded-b-3xl overflow-hidden shadow-dark-xl">
-            <iframe
-              src="https://maps.google.com/maps?q=Southgate%2C+Michigan+48195&t=&z=11&ie=UTF8&iwloc=&output=embed"
-              title="Konkus Construction service area — Downriver Michigan"
-              width="100%"
-              height="100%"
-              style={{ border: 0, position: 'absolute', inset: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
-
-          <p className="text-center text-charcoal/45 text-sm mt-5">
-            Don&apos;t see your city?{' '}
-            <a href="tel:+17344717196" className="text-gold hover:text-gold-700 font-semibold transition-colors">
-              Give us a call
-            </a>{' '}
-            — we may still be able to help.
-          </p>
         </motion.div>
 
       </div>
