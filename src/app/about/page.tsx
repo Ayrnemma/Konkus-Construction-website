@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { MdCheckCircle, MdArrowForward, MdPhone } from 'react-icons/md';
 import { COMPANY } from '@/lib/constants';
@@ -24,11 +23,11 @@ export default function AboutPage() {
       {/* ── Page hero ─────────────────────────── */}
       <section className="relative py-28 lg:py-36 bg-charcoal overflow-hidden">
         <div className="absolute inset-0">
-          <Image
-            src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1920&q=80"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1920&q=80"
             alt="About Konkus Construction"
-            fill
-            className="object-cover opacity-15"
+            className="w-full h-full object-cover opacity-15"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 to-charcoal" />
         </div>
@@ -50,12 +49,12 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 items-center">
             <div className="relative">
-              <div className="rounded-3xl overflow-hidden aspect-[4/5] shadow-dark-xl">
-                <Image
-                  src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=900&q=85"
-                  alt="Konkus Construction owner"
-                  fill
-                  className="object-cover"
+              <div className="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-dark-xl bg-[#111]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=85"
+                  alt="Konkus Construction team"
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
               <div className="absolute -bottom-6 -right-5 sm:-right-7 bg-gold text-white rounded-2xl p-6 shadow-gold-lg">

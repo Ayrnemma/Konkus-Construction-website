@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { MdPhone, MdEmail, MdArrowForward } from 'react-icons/md';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -15,11 +14,11 @@ export function ContactCTA() {
 
       {/* Background */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1920&q=80"
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1920&q=80"
           alt="Build something great with Konkus Construction"
-          fill
-          className="object-cover object-center"
+          className="w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-charcoal/88" />
         {/* Gradient edges */}

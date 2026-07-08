@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { MdArrowForward } from 'react-icons/md';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -10,6 +9,9 @@ import { GALLERY_IMAGES } from '@/lib/constants';
 // Pick a visually varied 8-image preview
 const PREVIEW_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
 const preview = GALLERY_IMAGES.filter((img) => PREVIEW_IDS.includes(img.id));
+
+const FALLBACK_SRC =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23111'/%3E%3Cpolygon points='0,180 200,40 400,180 360,180 200,70 40,180' fill='%23C4922A' opacity='.5'/%3E%3Ctext x='200' y='240' font-family='Arial' font-size='14' fill='%23C4922A' text-anchor='middle'%3EKonkus Construction%3C/text%3E%3C/svg%3E";
 
 export function GalleryPreview() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.04 });
@@ -51,16 +53,19 @@ export function GalleryPreview() {
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: i * 0.07 }}
               className={`group relative overflow-hidden rounded-2xl shadow-dark-sm
-                          hover:shadow-dark transition-all duration-300 cursor-pointer
+                          hover:shadow-dark transition-all duration-300 cursor-pointer bg-[#111]
                           ${i === 0 ? 'col-span-2 row-span-2' : ''}
                           ${i === 3 ? 'row-span-2' : ''}`}
             >
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={img.src}
                 alt={img.alt}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
                 loading="lazy"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = FALLBACK_SRC;
+                }}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.06]"
               />
               {/* Hover overlay */}
               <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/45

@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { MdArrowForward, MdKitchen, MdBathtub, MdFoundation, MdGridOn,
   MdFormatPaint, MdCarpenter, MdWallpaper, MdBuild, MdHandyman, MdAutoAwesome } from 'react-icons/md';
 import { motion } from 'framer-motion';
@@ -20,6 +19,10 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   repairs:     <MdHandyman size={22} />,
   custom:      <MdAutoAwesome size={22} />,
 };
+
+/** Inline SVG used as a data-URI fallback when an image fails to load */
+const FALLBACK_SRC =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23111'/%3E%3Cpolygon points='0,180 200,40 400,180 360,180 200,70 40,180' fill='%23C4922A' opacity='.5'/%3E%3Ctext x='200' y='240' font-family='Arial' font-size='14' fill='%23C4922A' text-anchor='middle'%3EKonkus Construction%3C/text%3E%3C/svg%3E";
 
 export function ServicesSection() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.06 });
@@ -61,15 +64,17 @@ export function ServicesSection() {
                            bg-white/[0.03] hover:bg-white/[0.07] hover:border-gold/30
                            transition-all duration-300 h-full"
               >
-                {/* Image */}
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image
+                {/* Image — plain <img> bypasses Next.js proxy; browser fetches directly */}
+                <div className="relative aspect-[4/3] overflow-hidden bg-[#111]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
                     src={service.image}
                     alt={service.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.08]"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
                     loading={i < 5 ? 'eager' : 'lazy'}
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = FALLBACK_SRC;
+                    }}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.08]"
                   />
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
                   <span className="absolute top-3 left-3 text-[9px] font-bold uppercase tracking-widest

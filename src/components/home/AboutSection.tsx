@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { MdCheckCircle, MdArrowForward } from 'react-icons/md';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -31,12 +30,12 @@ export function AboutSection() {
             className="relative"
           >
             {/* Primary image */}
-            <div className="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-dark-xl">
-              <Image
-                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=900&q=85"
+            <div className="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-dark-xl bg-[#111]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=85"
                 alt="Konkus Construction team at work"
-                fill
-                className="object-cover"
+                className="absolute inset-0 w-full h-full object-cover"
               />
               {/* Bottom gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal/50 via-transparent to-transparent" />

@@ -2,10 +2,12 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { MdPhone, MdArrowForward, MdVerified, MdLocationOn } from 'react-icons/md';
 import { motion, AnimatePresence } from 'framer-motion';
 import { COMPANY, HERO_IMAGES } from '@/lib/constants';
+
+const FALLBACK_SRC =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080' viewBox='0 0 1920 1080'%3E%3Crect width='1920' height='1080' fill='%23111'/%3E%3Cpolygon points='0,700 960,100 1920,700 1760,700 960,240 160,700' fill='%23C4922A' opacity='.4'/%3E%3C/svg%3E";
 
 export function Hero() {
   const [imgIndex, setImgIndex] = useState(0);
@@ -34,14 +36,14 @@ export function Hero() {
           exit={{ opacity: 0 }}
           transition={{ duration: 1.6, ease: 'easeInOut' }}
         >
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={HERO_IMAGES[imgIndex]}
             alt="Konkus Construction premium work"
-            fill
-            className="object-cover object-center"
-            priority={imgIndex === 0}
-            sizes="100vw"
-            quality={90}
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).src = FALLBACK_SRC;
+            }}
+            className="absolute inset-0 w-full h-full object-cover object-center"
           />
         </motion.div>
       </AnimatePresence>

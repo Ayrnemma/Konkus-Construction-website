@@ -1,11 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { MdArrowForward } from 'react-icons/md';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GALLERY_IMAGES, GALLERY_FILTERS } from '@/lib/constants';
+
+const FALLBACK_SRC =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23111'/%3E%3Cpolygon points='0,180 200,40 400,180 360,180 200,70 40,180' fill='%23C4922A' opacity='.5'/%3E%3Ctext x='200' y='240' font-family='Arial' font-size='14' fill='%23C4922A' text-anchor='middle'%3EKonkus Construction%3C/text%3E%3C/svg%3E";
 
 export default function GalleryPage() {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -72,15 +74,22 @@ export default function GalleryPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3 }}
-                  className="masonry-item group relative overflow-hidden rounded-2xl shadow-dark-sm hover:shadow-dark cursor-pointer"
+                  className="masonry-item group relative overflow-hidden rounded-2xl shadow-dark-sm hover:shadow-dark cursor-pointer bg-[#111]"
                 >
                   <div className={`relative w-full ${
                     img.height === 'tall' ? 'aspect-[3/4]' :
                     img.height === 'short' ? 'aspect-[4/3]' : 'aspect-square'
                   }`}>
-                    <Image src={img.src} alt={img.alt} fill
-                           className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
-                           loading="lazy" />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      loading="lazy"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).src = FALLBACK_SRC;
+                      }}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+                    />
                     <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/40 transition-all duration-300" />
                     <div className="absolute inset-0 flex flex-col justify-end p-4
                                     opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0

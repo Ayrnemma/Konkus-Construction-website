@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
-import Image from 'next/image';
 import { MdPhone, MdEmail, MdLocationOn, MdCheckCircle } from 'react-icons/md';
 import { COMPANY } from '@/lib/constants';
 import { ContactForm } from './ContactForm';
@@ -17,11 +16,11 @@ export default function ContactPage() {
       {/* Hero */}
       <section className="relative py-24 bg-charcoal overflow-hidden">
         <div className="absolute inset-0">
-          <Image
-            src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1920&q=80"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1920&q=80"
             alt="Contact Konkus Construction"
-            fill
-            className="object-cover opacity-15"
+            className="w-full h-full object-cover opacity-15"
           />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

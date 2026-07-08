@@ -156,7 +156,7 @@ export function HeroSidebar() {
             {/* Logo */}
             <div className="relative mb-6" style={{ height: 80, width: 260 }}>
               <Image
-                src="/logo.png"
+                src="/logo.svg"
                 alt="Konkus Construction"
                 fill
                 className="object-contain object-left drop-shadow-[0_2px_16px_rgba(155,117,53,0.5)]"
@@ -310,7 +310,7 @@ export function HeroSidebar() {
         {/* Mobile top nav */}
         <div className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-5 py-4">
           <div className="relative h-12 w-44">
-            <Image src="/logo.png" alt="Konkus Construction" fill className="object-contain object-left" priority />
+            <Image src="/logo.svg" alt="Konkus Construction" fill className="object-contain object-left" priority />
           </div>
           <button
             onClick={() => setMobileOpen(true)}
@@ -386,7 +386,7 @@ export function HeroSidebar() {
         <div className="absolute inset-0 z-20 flex flex-col justify-end px-6 pb-10">
           <div className="relative mb-5" style={{ height: 64, width: 220 }}>
             <Image
-              src="/logo.png"
+              src="/logo.svg"
               alt="Konkus Construction"
               fill
               className="object-contain object-left drop-shadow-[0_2px_12px_rgba(155,117,53,0.5)]"
