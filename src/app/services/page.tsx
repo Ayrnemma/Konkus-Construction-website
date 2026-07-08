@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { MdArrowForward, MdPhone } from 'react-icons/md';
 import { SERVICES, COMPANY } from '@/lib/constants';
+import { ClientImage } from '@/components/ui/ClientImage';
 
 export const metadata: Metadata = {
   title: 'Our Services',
@@ -9,20 +10,23 @@ export const metadata: Metadata = {
     'Konkus Construction offers kitchen remodeling, bathroom remodeling, finished basements, flooring, interior painting, trim & finish carpentry, drywall repair, seasonal maintenance, and general home repairs throughout Downriver Michigan.',
 };
 
-const FALLBACK_SRC =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23111'/%3E%3Cpolygon points='0,180 200,40 400,180 360,180 200,70 40,180' fill='%23C4922A' opacity='.5'/%3E%3Ctext x='200' y='240' font-family='Arial' font-size='14' fill='%23C4922A' text-anchor='middle'%3EKonkus Construction%3C/text%3E%3C/svg%3E";
-
 export default function ServicesPage() {
   return (
     <div className="pt-[76px]">
 
-      {/* Hero */}
+      {/* ── Hero ─────────────────────────────────────── */}
       <section className="relative py-28 lg:py-36 bg-charcoal overflow-hidden">
         <div className="absolute inset-0">
+          {/*
+            Plain <img> without event handlers is safe in a server component.
+            The hero background is decorative (opacity-15) so a broken load
+            just shows the charcoal background — no fallback needed here.
+          */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80"
-            alt="Construction services"
+            alt=""
+            aria-hidden="true"
             className="w-full h-full object-cover opacity-15"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 to-charcoal" />
@@ -41,7 +45,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Services list */}
+      {/* ── Services list ──────────────────────────────── */}
       <section className="py-20 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-16 lg:space-y-24">
@@ -53,16 +57,12 @@ export default function ServicesPage() {
                   i % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''
                 }`}
               >
-                {/* Image */}
+                {/* Image — ClientImage handles onError in the browser; no server-side fetch */}
                 <div className="relative rounded-3xl overflow-hidden aspect-[4/3] shadow-dark-xl bg-[#111]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <ClientImage
                     src={service.image}
                     alt={service.title}
                     loading="lazy"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src = FALLBACK_SRC;
-                    }}
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                   <div className="absolute top-4 left-4">
@@ -79,7 +79,10 @@ export default function ServicesPage() {
                   <div className="gold-rule mb-6" />
                   <p className="section-body mb-8 text-lg">{service.description}</p>
                   <div className="flex flex-col sm:flex-row gap-3">
-                    <Link href={`/contact?service=${encodeURIComponent(service.title)}`} className="btn-primary">
+                    <Link
+                      href={`/contact?service=${encodeURIComponent(service.title)}`}
+                      className="btn-primary"
+                    >
                       Get a Quote <MdArrowForward size={17} />
                     </Link>
                     <a href={COMPANY.phoneHref} className="btn-secondary border-charcoal/15">
@@ -93,7 +96,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* ── CTA ────────────────────────────────────────── */}
       <section className="py-20 bg-charcoal">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="section-heading-light mb-4">Don&apos;t See Your Project?</h2>
@@ -101,8 +104,12 @@ export default function ServicesPage() {
             We handle a wide range of home improvement work. Just ask — we probably do it.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link href="/contact" className="btn-primary">Contact Us <MdArrowForward size={17} /></Link>
-            <a href={COMPANY.phoneHref} className="btn-ghost-white"><MdPhone size={17} /> {COMPANY.phone}</a>
+            <Link href="/contact" className="btn-primary">
+              Contact Us <MdArrowForward size={17} />
+            </Link>
+            <a href={COMPANY.phoneHref} className="btn-ghost-white">
+              <MdPhone size={17} /> {COMPANY.phone}
+            </a>
           </div>
         </div>
       </section>
